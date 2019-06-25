@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "target": "es5",
+    //"module": "esnext",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "outDir": "build",
+    "lib": ["dom", "es2015", "es2016"],
+    "declaration": false,
+    "allowSyntheticDefaultImports": true,
+    "inlineSourceMap": false,
+    "sourceMap": true,
+    "noEmitOnError": false,
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": false,
+    "noImplicitUseStrict": false,
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+}

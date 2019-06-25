@@ -1,0 +1,28 @@
+{
+  "name": "terkin-javascript",
+  "version": "0.0.0",
+  "description": "Terkin Telemetry client library for JavaScript, written in TypeScript",
+  "main": "build/module.js",
+  "scripts": {
+    "tsc": "tsc",
+    "compile": "tsc",
+    "run-example": "ts-node src/example.ts",
+    "watch-example": "ts-node-dev --debug --respawn --transpile-only --prefer-ts src/example.ts"
+  },
+  "keywords": [
+    "terkin",
+    "kotori",
+    "telemetry",
+    "sensor network"
+  ],
+  "author": "Andreas Motl",
+  "email": "andreas@terkin.org",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.40",
+    "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
