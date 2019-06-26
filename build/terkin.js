@@ -26,51 +26,53 @@ var TelemetryNode = /** @class */ (function () {
         this.network = options['network'];
         this.gateway = options['gateway'];
         this.node = options['node'];
-        this.channel_uri = "{this.api_uri}/{this.realm}/{this.network}/{this.gateway}/{this.node}";
+        this.channel_uri = this.api_uri + "/" + this.realm + "/" + this.network + "/" + this.gateway + "/" + this.node;
         console.log('Channel URI: ', this.channel_uri);
-        this.client = new TelemetryClient("{this.channel_uri}/data");
+        this.client = new TelemetryClient(this.channel_uri + "/data");
     }
     TelemetryNode.prototype.transmit = function (data) {
         return this.client.transmit(data);
     };
     return TelemetryNode;
 }());
-exports.default = TelemetryNode;
+exports.TelemetryNode = TelemetryNode;
 var TelemetryClient = /** @class */ (function () {
     function TelemetryClient(uri) {
         this.uri = uri;
     }
     TelemetryClient.prototype.transmit = function (data) {
-        /*
+        /**
+         *
          * Submit telemetry data using HTTP POST request
          * Serialization: x-www-form-urlencoded
+         *
          * https://github.com/request/request
+         *
          */
-        /*
-        $payload = http_build_query($data);
-    
+        //$payload = http_build_query($data);
         // Use key 'http' even if you send the request to https://...
-        $options = array(
-          'http' => array(
-          'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-          'method'  => 'POST',
-          'content' => $payload
-        )
-        */
-        /*
-        $result = http_get_contents(this.uri, $options);
-    
-        if ($result === FALSE) {
-          error_log("Could not submit telemetry data to '{this.uri}', payload='{$payload}'");
-        }
-    
-        return $result;
-        
-         */
-        request_1.default('http://www.google.com', function (error, response, body) {
-            console.error('error:', error); // Print the error if one occurred
-            console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-            console.log('body:', body); // Print the HTML for the Google homepage.
+        var options = {
+            method: 'POST',
+            uri: this.uri,
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            form: data,
+        };
+        var json_data = JSON.stringify(data);
+        console.info("Transmitting data " + json_data + ".");
+        request_1.default(options, function (error, response, body) {
+            if (error) {
+                // Print the error if one occurred
+                console.error("Submitting telemetry data to '" + options.uri + "' failed: " + error + ". data=" + JSON.stringify(json_data));
+                // Print the response status code
+                console.log('Response status:', response && response.statusCode);
+                // Print the response.
+                console.log('Response body:', body);
+            }
+            else {
+                // Print the response.
+                console.log('Request successful');
+                console.log('Response body:', body);
+            }
         });
     };
     return TelemetryClient;
