@@ -20,11 +20,6 @@ Run demonstration program from the command line::
     # Send a periodic, slowly oscillating sawtooth signal.
     yarn run-sawtooth
 
-Grafana
--------
-Watch telemetry data at
-https://swarm.hiveeyes.org/grafana/d/GE7ndFVWk/terkin-javascript
-
 */
 
 import process from 'process';
