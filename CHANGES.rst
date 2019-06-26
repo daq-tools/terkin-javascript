@@ -6,6 +6,7 @@ Changelog
 In progress
 ===========
 - Compiles and runs.
+- Add pure JavaScript example
 
 
 2019-06-26 0.0.0

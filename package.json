@@ -7,6 +7,7 @@
     "tsc": "tsc",
     "compile": "tsc",
     "run-example": "ts-node src/example.ts single",
+    "run-example-js": "node build/example-javascript.js",
     "run-sawtooth": "ts-node src/example.ts sawtooth",
     "watch-example": "ts-node-dev --debug --respawn --transpile-only --prefer-ts src/example.ts single",
     "watch-sawtooth": "ts-node-dev --debug --respawn --transpile-only --prefer-ts src/example.ts sawtooth"
