@@ -15,12 +15,12 @@
  */
 import request from 'request';
 
-export default class TelemetryNode {
-  /***
+export class TelemetryNode {
+  /**
    *
    * Telemetry node client: Highlevel network participant API.
    *
-   **/
+   */
 
   api_uri: string;
   realm: string;
@@ -39,10 +39,10 @@ export default class TelemetryNode {
     this.gateway = options['gateway'];
     this.node    = options['node'];
 
-    this.channel_uri = `{this.api_uri}/{this.realm}/{this.network}/{this.gateway}/{this.node}`;
+    this.channel_uri = `${this.api_uri}/${this.realm}/${this.network}/${this.gateway}/${this.node}`;
     console.log('Channel URI: ', this.channel_uri);
 
-    this.client = new TelemetryClient("{this.channel_uri}/data");
+    this.client = new TelemetryClient(`${this.channel_uri}/data`);
   }
 
   transmit(data) {
@@ -52,11 +52,11 @@ export default class TelemetryNode {
 }
 
 export class TelemetryClient {
-  /***
+  /**
    *
    * Telemetry data client: Lowlevel API.
    *
-   **/
+   */
   
   uri: string;
 
@@ -65,38 +65,47 @@ export class TelemetryClient {
   }
 
   transmit(data) {
-    /*
+    /**
+     *
      * Submit telemetry data using HTTP POST request
      * Serialization: x-www-form-urlencoded
+     *
      * https://github.com/request/request
+     *
      */
-    /*
-    $payload = http_build_query($data);
+
+    //$payload = http_build_query($data);
 
     // Use key 'http' even if you send the request to https://...
-    $options = array(
-      'http' => array(
-      'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-      'method'  => 'POST',
-      'content' => $payload
-    )
-    */
+    const options = {
+      method: 'POST',
+      uri: this.uri,
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      form: data,
+    };
 
-    /*
-    $result = http_get_contents(this.uri, $options);
+    const json_data = JSON.stringify(data);
 
-    if ($result === FALSE) {
-      error_log("Could not submit telemetry data to '{this.uri}', payload='{$payload}'");
-    }
+    console.info(`Transmitting data ${json_data}.`);
+    request(options, function(error, response, body) {
+      if (error) {
 
-    return $result;
-    
-     */
+        // Print the error if one occurred
+        console.error(`Submitting telemetry data to '${options.uri}' failed: ${error}. data=${JSON.stringify(json_data)}`);
 
-    request('https://httpbin.org/ip', function (error, response, body) {
-      console.error('error:', error); // Print the error if one occurred
-      console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-      console.log('body:', body); // Print the HTML for the Google homepage.
+        // Print the response status code
+        console.log('Response status:', response && response.statusCode);
+
+        // Print the response.
+        console.log('Response body:', body);
+
+      } else {
+
+        // Print the response.
+        console.log('Request successful');
+        console.log('Response body:', body);
+
+      }
     });
     
   }

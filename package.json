@@ -6,8 +6,10 @@
   "scripts": {
     "tsc": "tsc",
     "compile": "tsc",
-    "run-example": "ts-node src/example.ts",
-    "watch-example": "ts-node-dev --debug --respawn --transpile-only --prefer-ts src/example.ts"
+    "run-example": "ts-node src/example.ts single",
+    "run-sawtooth": "ts-node src/example.ts sawtooth",
+    "watch-example": "ts-node-dev --debug --respawn --transpile-only --prefer-ts src/example.ts single",
+    "watch-sawtooth": "ts-node-dev --debug --respawn --transpile-only --prefer-ts src/example.ts sawtooth"
   },
   "keywords": [
     "terkin",
@@ -19,6 +21,7 @@
   "email": "andreas@terkin.org",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@types/node": "^12.0.10",
     "ts-node-dev": "^1.0.0-pre.40",
     "typescript": "^3.1.6"
   },

@@ -1,3 +1,3 @@
-import TelemetryNode from './terkin';
+import { TelemetryNode } from './terkin';
 
 export { TelemetryNode };

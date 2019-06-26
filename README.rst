@@ -38,16 +38,23 @@ Compile TypeScript in ``./src`` folder to JavaScript in ``./build`` folder::
 
     yarn compile
 
-Run example program and publish single measurement reading::
+Run example program to publish single measurement reading::
 
     yarn run-example
 
+Run example program to publish synthesized sawtooth signal::
+
+    yarn run-sawtooth
 
 Hacking
 =======
-Continuously watch the filesystem for changes and run example program when amending::
+Continuously watch the filesystem and run example program on change::
 
     yarn watch-example
+
+Continuously watch the filesystem and run sawtooth signal example program on change::
+
+    yarn watch-sawtooth
 
 
 ----
