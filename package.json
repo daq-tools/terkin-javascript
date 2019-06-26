@@ -1,6 +1,6 @@
 {
   "name": "terkin-javascript",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Terkin Telemetry client library for JavaScript, written in TypeScript",
   "main": "build/module.js",
   "scripts": {
